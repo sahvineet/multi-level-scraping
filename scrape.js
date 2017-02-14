@@ -3,8 +3,8 @@ var cheerio = require('cheerio');
 
 
 function loadData2() {
-    var url = 'http://www.seminole-sports.com/2017.html';
-    console.log('---loading seminole html page----------');
+    var url = 'http://www.xxxxxxxxxxx.html';
+    console.log('---requesting html page----------');
     request(url, function(error2, response2, html2) {
         var metadata = {};
         if (!error2 && response2.statusCode == 200) {
@@ -28,8 +28,8 @@ function loadData2() {
 
 
 function loadData(callback) {
-    console.log('---loading baseball html page----------');
-    request('http://gamedayusa.com/tournaments/baseball.cfm', function(error, response, html) {
+    console.log('---lequesting html page----------');
+    request('http://xxxxxxxxxxx-xx1.com', function(error, response, html) {
         if (!error && response.statusCode == 200) {
             var $ = cheerio.load(html);
             $('div table.footable.table tbody').each(function(i, element) {
@@ -38,12 +38,12 @@ function loadData(callback) {
                     var tds = $(this).find('td');
                     var link = tds.eq(4).find('div.pull-left').last().find('a').attr('href');
 
-                    var url = 'http://gamedayusa.com/tournaments/' + link;
+                    var url = 'http://xxxxxxxxxxx-xx1.com/2xxx/' + link;
                     request(url, function(error2, response2, html2) {
                         if (!error2 && response2.statusCode == 200) {
                             var metadata = {};
                             var $2 = cheerio.load(html2);
-                            var table = $2('div.specTable.addPaddTopBot table');
+                            var table = $2('div.TopBot table');
                             trs = table.find('tr');
                             metadata.date = trs.eq(0).find('td').eq(1).text();
                             metadata.location = trs.eq(1).find('td').eq(1).text();
